@@ -1,0 +1,14 @@
+Реализуйте функцию getIn, которая извлекает из массива (который может быть любой глубины вложенности) значение по указанным ключам. Аргументы:
+
+function getIn($data, $keytoFind)
+{
+    foreach ($keytoFind as $value) {
+        if (!is_array($data) || !array_key_exists($value, $data)) {
+            return null;
+        }
+        if (array_key_exists($value, $data)) {
+            $data = $data[$value];
+        }
+    }
+    return $data;
+}
