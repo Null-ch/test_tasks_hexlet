@@ -1,0 +1,20 @@
+function getChunked(array $arr, $count)
+{
+    $result = [];
+    $chunk = [];
+
+    foreach ($arr as $index => $item) {
+        $chunk[] = $item;
+
+        if (count($chunk) === $count) {
+            $result[] = $chunk;
+            $chunk = [];
+        }
+
+        if ($index + 1 === count($arr) && !empty($chunk)) {
+            $result[] = $chunk;
+        }
+    }
+
+    return $result;
+}
