@@ -1,0 +1,19 @@
+function countWords($text1)
+{
+ $text1 = mb_strtolower($text1);
+ $arr = [];
+ $arr = explode(" ", $text1);
+
+ $result = [];
+  if ($text1 === '') {
+      return [];
+  }
+  foreach ($arr as $item) {
+    if (array_key_exists($item, $result)) {
+      $result[$item] += 1;
+    } else {
+      $result[$item] = 1;
+    }
+  } return $result;
+  
+}
