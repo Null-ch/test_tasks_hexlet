@@ -1,0 +1,14 @@
+function getSameParity($arr)
+{
+    $result = [];
+    if (empty($arr)) {
+        return $arr;
+    } else {
+        $parity = $arr[0] % 2;
+        foreach ($arr as $value) {
+            if ($value % 2 === $parity) {
+                $result[] = $value;
+            }
+        }
+    } return $result;
+}
