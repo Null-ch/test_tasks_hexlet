@@ -1,0 +1,12 @@
+function buildDefinitionList($definitions)
+{
+    $result = [];
+    if (!$definitions) {
+        return "";
+    }
+    foreach ($definitions as $item) {
+        $result[] = "<dt>$item[0]</dt><dd>$item[1]</dd>";
+    }
+    $innerValue = implode('', $result);
+    return "<dl>$innerValue</dl>";
+}
