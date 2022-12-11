@@ -1,0 +1,14 @@
+function swap(array $arr, $x)
+{
+       $count = count($arr) - 1;
+        $index1 = $x + 1;
+        $index2 = $x - 1;
+    if ($index1 > $count || $index2 < 0) {
+        return $arr;
+    } else {
+        $indBox = $arr[$index1];
+        $arr[$index1] = $arr[$index2];
+        $arr[$index2] = $indBox;
+        return $arr;
+    }
+}
