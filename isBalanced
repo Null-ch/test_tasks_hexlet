@@ -1,0 +1,22 @@
+function isBalanced($x)
+{
+    $arr = [];
+    $startSymb = '(';
+    $pair = '()';
+
+    for ($i = 0, $len = strlen($x); $i < $len; $i++) {
+        $curr = $x[$i];
+        if ($curr === "(") {
+            array_push($arr, $curr);
+        } elseif ($curr != ")") {
+            continue;
+        } else {
+            $prev = array_pop($arr);
+            $pairNow = "{$prev}{$curr}";
+            if ($pairNow != $pair) {
+                return false;
+            }
+        }
+    }
+    return count($arr) === 0;
+}
