@@ -1,0 +1,9 @@
+
+function getGirlFriends($users)
+{
+  $result = array_map(fn($users) => $users['friends'], $users);
+  $usersflattened = flatten($result);
+  
+  $filteredUsers = array_filter($usersflattened, fn($users) => $users['gender'] === 'female');
+  return array_values($filteredUsers);
+}
