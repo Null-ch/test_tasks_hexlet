@@ -1,0 +1,6 @@
+function union($first, ...$rest)
+{
+    $unionArray = array_merge($first, ...$rest);
+    $sharedArray = array_unique($unionArray);
+    return array_values($sharedArray);
+}
