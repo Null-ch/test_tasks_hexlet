@@ -1,0 +1,9 @@
+function getSameCount($firstArr, $secondArr)
+{
+    $resultMass = [];
+    foreach ($firstArr as $item) {
+        if (in_array($item, $secondArr) && (in_array($item, $resultMass) === false)) {
+                $resultMass[] = $item;
+        }
+    } return count($resultMass);
+}
