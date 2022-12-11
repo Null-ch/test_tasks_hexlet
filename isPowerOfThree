@@ -1,0 +1,9 @@
+function isPowerOfThree($a)
+{
+    for ($i = 0; $i <= $a; $i++) {
+        if (pow(3, $i) == $a) {
+            return true;
+        }
+    }
+    return false;
+}
