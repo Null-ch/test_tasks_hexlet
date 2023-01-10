@@ -1,0 +1,38 @@
+class Timer
+{
+    public const SEC_PER_MIN = 60;
+    public const SEC_PER_HOUR = 60 * self::SEC_PER_MIN;
+    public $secondsCount;
+
+    public function __construct($sec=0, $min = 0, $hour = 0)
+    {
+        $this->secondsCount = ($sec + $min * Timer::SEC_PER_MIN + $hour * Timer::SEC_PER_HOUR);
+    }
+
+    public function getLeftSeconds()
+    {
+        return $this->secondsCount;
+    }
+
+    public function tick()
+    {
+        $this->secondsCount++;
+    }
+    public function __toString()
+    {
+        return $this->secondsCount;
+    }
+}
+
+function start($timer)
+  {
+    while ($timer->secondsCount >= 0) {
+      $timer->tick();
+      $nowTime = gmdate("H:i:s", $timer->secondsCount);
+      print_r("current AFK time:      {$nowTime}\n");
+      sleep(1);
+    }
+  }
+
+$timer = new Timer();
+start($timer);
