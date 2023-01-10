@@ -4,7 +4,7 @@ class Timer
     public const SEC_PER_HOUR = 60 * self::SEC_PER_MIN;
     public $secondsCount;
 
-    public function __construct($sec=0, $min = 0, $hour = 0)
+    public function __construct($sec = 0, $min = 0, $hour = 0)
     {
         $this->secondsCount = ($sec + $min * Timer::SEC_PER_MIN + $hour * Timer::SEC_PER_HOUR);
     }
