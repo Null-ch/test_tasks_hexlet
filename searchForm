@@ -1,0 +1,49 @@
+public/index.php
+Реализуйте обработчик /users, который формирует список пользователей. Обработчик поддерживает фильтрацию через параметр term, в котором передается firstName, возвращающий все совпадения по началу имени пользователя. Список пользователей доступен в переменной $users.
+
+$app->get('/users', function ($request, $response) use ($users) {
+    $term = $request->getQueryParam('term');
+
+    $searchResult = [];
+    foreach ($users as $user) {
+        if (!empty($term)) {
+            $count = mb_strlen($term);
+            if (mb_substr(mb_strtolower($user['firstName']), 0, $count)  === mb_strtolower($term)) {
+                $searchResult [] = $user;
+            }
+        }
+    }
+
+    $params = [
+        'term' => $term,
+        'searchResult' => $searchResult,
+        'users' => $users
+    ];
+
+    return $this->get('renderer')->render($response, 'users/index.phtml', $params);
+});
+
+templates/users/index.phtml
+Реализуйте вывод списка пользователей и формы для фильтрации. Если совпадения не найдены, то должна выводится только форма. Поле ввода должно сохранять введённое значение.
+
+<a href="/users">Все Пользователи</a>
+
+<form action="/users" method="get">
+    <input type="search" name="term" value="<?= htmlspecialchars($term) ?>" required />
+    <input type="submit" value="Search" />
+</form>
+
+
+<?php if (!empty($term)): ?>
+<?php foreach ($searchResult as $user): ?>
+    <div>
+        <?= htmlspecialchars($user['firstName']) ?>
+    </div>
+<?php endforeach ?>
+<?php else: ?>
+<?php foreach ($users as $user): ?>
+    <div>
+        <?= htmlspecialchars($user['firstName']) ?>
+    </div>
+<?php endforeach ?>
+<?php endif; ?>
