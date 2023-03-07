@@ -1,0 +1,9 @@
+<?php
+
+function arraySort(array $array, $key = 'sort', $sort = SORT_ASC)
+{
+    usort($array, function ($unsorted, $sorted) use ($key, $sort): int {
+        return $sort == SORT_DESC ? $sorted[$key] <=> $unsorted[$key] : $unsorted[$key] <=> $sorted[$key];
+    });
+    return $array;
+}
